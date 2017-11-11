@@ -1,7 +1,8 @@
 class Room(object):
 
-    def __init__():
-        current_room =
+    def __init__(room):
+        current_room = room
+        print current_room
 
     def current_room_check():
         pass
@@ -18,9 +19,14 @@ class Room(object):
 class Character(object):
 
     def __init__():
-        pass
+        inventory = []
+        characterinfo = {}
+        self.character_name()
 
     def character_name():
+        print "What is your name, young traveler?"
+        charactername = raw_input('>> ')
+        characterinfo['name'] = charactername
         pass
 
     def inventory_check(itemcheck):
@@ -28,6 +34,13 @@ class Character(object):
             return True
         else:
             return False
+
+    def inventory_add(itemcheck):
+        if itemcheck.upper() in inventory:
+            print "You already have this item."
+        else:
+
+
 
     def inventory_print():
         for item in inventory:
