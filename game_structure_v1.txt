@@ -9,6 +9,7 @@
 
 * Class for Character
   * Character Name
+  * Inventory Add
   * Inventory Check
   * Inventory Print
 Information

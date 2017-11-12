@@ -1,9 +1,8 @@
-rooms = {housekeeping : outside,
-         outside: entryway,
-         entryway : office,
-         office : kitchen,
-         kitchen : tikialtar
-         }
+import game_data_v1
+# RoomDataStructure
+# 0 = roomdescription
+# 1 = roomchoicesint
+# 2 = roomchoicesdict
 
 housekeeping = ["""
 Welcome to the Lair of the Dark Rabbit Tiki God.
@@ -18,14 +17,20 @@ Your instructions are as follows:
 \tand may result in their mortality.
 
 Do you understand?
-"""]
+""",
+'yn',
+{'YES' : outside, 'NO' : error}]
 
-outside = ["""You awaken in a clearing.
+outside = ["""
+You awaken in a clearing.
 What appears to be a Polynesian home stretches out before you.
 You come upon a grey wooden door
 with a tiki carved in the front of it.
 A small POND is to your right.
-Do you OPEN the door or LEAVE?"""]
+Do you OPEN the door or LEAVE?
+""",
+3,
+{'POND' : }]
 
 entryway = ["""
 You enter a dark room with an ARCH to your right.
@@ -37,14 +42,52 @@ To your left, there is a TABLE surrounded by shelves
 upon shelves of small armies, intended to bring success in war.
 Just ahead, you see a HALLWAY that leads into darkness.
 Where would you like to go?
-"""]
+""",
+4,
+{}]
 
 office = ["""
 The whirring that was heard upon entering gets louder.
-You see a wooden box glowing in the distance.
+You see a wooden BOX glowing in the distance.
 As an offering to the box, there is a small DRUM
 in a circle on the floor.
 You inspect the room and find nothing else of consequence.
 Ahead, you see a hallway that seems to lead to another room.
 Do you go FORWARD or BACK?
-"""]
+""",
+4,
+{}]
+
+kitchen = ["""
+You enter a room that is filled with various meats.
+You identify several meats as
+""",
+0,
+{}]
+
+tikialtar = ["""
+
+""",
+0,
+{}]
+
+error = ['''
+Your answer was invalid.
+Currently, you must restart the game,
+we will be adding a restart feature soon.
+''']
+
+rooms = {'housekeeping' : 'outside',
+         'outside' : 'entryway',
+         'entryway' : 'office',
+         'office' : 'kitchen',
+         'kitchen' : 'tikialtar'
+         }
+
+roommap = {'housekeeping': housekeeping,
+           'outside' : outside,
+           'entryway' : entryway,
+           'office' : office,
+           'kitchen' : kitchen,
+           'tikialtar' : tikialtar
+           }
