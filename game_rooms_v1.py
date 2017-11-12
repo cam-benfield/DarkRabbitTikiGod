@@ -46,8 +46,12 @@ Do you go FORWARD or BACK?
 You enter a room that seems to be used as a kitchen of sorts.
 There are TREATS, meats, vegetables, and an abundance of drinks and desserts.
 A small paring KNIFE sits on the countertop.
+AHEAD, you see a large stone face, a Moai.
 """,
 """
+At its feet, you pet bunnies and drop off your goods as an offering to the great Nui!
+----------
+YAY! You collected stuff and freed the bunnies!
 """
 ]
 
@@ -72,7 +76,7 @@ entryway = [roomdescriptions[2], 5, { 'ARCH': 'office', 'ALTAR' : 'staff', 'TABL
 
 office = [roomdescriptions[3], 4, {'BOX' : 'glowing cube', 'DRUM' : 'drum', 'FORWARD' : 'kitchen', 'BACK' : 'entryway'}]
 
-kitchen = [roomdescriptions[4], 4, {'TREATS': 'treats', 'KNIFE': 'knife', 'AHEAD' : 'tikialtar' 'BACK' : 'office'}]
+kitchen = [roomdescriptions[4], 4, {'TREATS': 'treats', 'KNIFE': 'knife', 'AHEAD' : 'tikialtar', 'BACK' : 'office'}]
 
 tikialtar = [roomdescriptions[5], 0, {}]
 
