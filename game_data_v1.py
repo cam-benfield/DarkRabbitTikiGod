@@ -30,13 +30,14 @@ class Room(object):
 
             if not nextstep:
                 print game_rooms_v1.error[0]
+                self.print_room_text(current_room_data)
             elif nextstep in game_rooms_v1.items:
                 self.inventory_add(nextstep)
                 self.print_room_text(current_room_data)
             elif nextstep:
                 self.next_room_check(nextstep)
         else:
-            print game_rooms_v1.error[1]
+            print error[1]
 
     def next_room_check(self,nextroom):
         self.current_room_check(nextroom)
@@ -61,6 +62,9 @@ class Room(object):
             print "You already have this item."
         else:
             self.inventory.append(itemcheck)
+            print "-" * 20
+            itemdata = game_rooms_v1.items[itemcheck]
+            print itemdata[0]
             self.inventory.sort()
             print "You have added %s to your inventory." % itemcheck
             self.inventory_print()
@@ -70,6 +74,6 @@ class Room(object):
         for item in self.inventory:
             print item
 
-def start_game(game):
+def start_game():
     print "game is starting"
-    room = Room(game)
+    room = Room('housekeeping')
