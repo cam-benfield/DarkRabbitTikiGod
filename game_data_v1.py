@@ -4,12 +4,9 @@ class Room(object):
 
     def __init__(self, room):
         current_room = room
-        print current_room
         self.current_room_check(current_room)
 
     def current_room_check(self, current_room):
-        print current_room
-        self.print_room_text(current_room)
         currentroomdata = game_rooms_v1.roommap[current_room]
         self.print_room_text(currentroomdata)
 
@@ -18,15 +15,23 @@ class Room(object):
         self.room_choices(current_room_data)
 
     def room_choices(self, current_room_data):
-        choice = raw_input('>>')
-        if 'yn' in current_room_data[1]:
-            pass
-        elif: # put number of choices in data[1]
-            pass
+        numofchoices = current_room_data[1]
+        if numofchoices > 0:
+            choiceoptions = current_room_data[2]
+            choice = raw_input('>>').upper()
+            nextstep = choiceoptions.get(choice, None)
+            if not nextstep:
+                print game_rooms_v1.error[0]
+            elif nextstep:
+                self.next_room_check(nextstep)
+        else:
+            print error[1]
+
+    def next_room_check(self,nextroom):
+        Room(nextroom)
 
 
-    def next_room_check(self):
-        pass
+
 
 class Character(object):
 
@@ -39,6 +44,7 @@ class Character(object):
         print "What is your name, young traveler?"
         charactername = raw_input('>> ')
         self.characterinfo['name'] = charactername
+        print "Thanks for playing %s" % self.characterinfo['name']
         pass
 
     def inventory_check(itemcheck):

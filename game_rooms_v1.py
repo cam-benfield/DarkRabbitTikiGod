@@ -1,10 +1,6 @@
 import game_data_v1
-# RoomDataStructure
-# 0 = roomdescription
-# 1 = roomchoicesint
-# 2 = roomchoicesdict
 
-housekeeping = ["""
+roomdescriptions = ["""
 Welcome to the Lair of the Dark Rabbit Tiki God.
 You will be exploring the lair and helping those who need your assistance.
 
@@ -18,21 +14,15 @@ Your instructions are as follows:
 
 Do you understand?
 """,
-'yn',
-{'YES' : outside, 'NO' : error}]
-
-outside = ["""
+"""
 You awaken in a clearing.
 What appears to be a Polynesian home stretches out before you.
 You come upon a grey wooden door
 with a tiki carved in the front of it.
 A small POND is to your right.
-Do you OPEN the door or LEAVE?
+Do you OPEN the door or go BACK?
 """,
-3,
-{'POND' : }]
-
-entryway = ["""
+"""
 You enter a dark room with an ARCH to your right.
 In the arch, you hear the whirring of profane rituals
 intended to reveal the future.
@@ -40,13 +30,10 @@ Along the wall just ahead,
 there is an ALTAR to the gods of the land.
 To your left, there is a TABLE surrounded by shelves
 upon shelves of small armies, intended to bring success in war.
-Just ahead, you see a HALLWAY that leads into darkness.
+Just AHEAD, you see a hallway that leads into darkness.
 Where would you like to go?
 """,
-4,
-{}]
-
-office = ["""
+"""
 The whirring that was heard upon entering gets louder.
 You see a wooden BOX glowing in the distance.
 As an offering to the box, there is a small DRUM
@@ -55,27 +42,41 @@ You inspect the room and find nothing else of consequence.
 Ahead, you see a hallway that seems to lead to another room.
 Do you go FORWARD or BACK?
 """,
-4,
-{}]
-
-kitchen = ["""
-You enter a room that is filled with various meats.
-You identify several meats as
+"""
+You enter a room that seems to be used as a kitchen of sorts.
+There are TREATS, meats, vegetables, and an abundance of drinks and desserts.
+A small paring KNIFE sits on the countertop.
 """,
-0,
-{}]
-
-tikialtar = ["""
-
-""",
-0,
-{}]
+"""
+"""
+]
 
 error = ['''
 Your answer was invalid.
 Currently, you must restart the game,
 we will be adding a restart feature soon.
-''']
+''', """Thank you for playing"""]
+
+items = ['frog', 'staff', 'small commander', 'glowing cube', 'drum', 'knife', 'treats']
+
+# RoomDataStructure
+# 0 = roomdescription
+# 1 = roomchoicesint
+# 2 = roomchoicesdict
+
+housekeeping = [roomdescriptions[0], 1, {'YES' : 'outside', 'NO' : 'housekeeping'}]
+
+outside = [roomdescriptions[1], 4, {'POND' : 'frog', 'OPEN' : 'entryway', 'BACK' : 'housekeeping', 'AHEAD' : 'entryway' }]
+
+entryway = [roomdescriptions[2], 5, { 'ARCH': 'office', 'ALTAR' : 'staff', 'TABLE' : 'small commander', 'AHEAD': 'kitchen', 'BACK' : 'outside'}]
+
+office = [roomdescriptions[3], 4, {'BOX' : 'glowing cube', 'DRUM' : 'drum', 'FORWARD' : 'kitchen', 'BACK' : 'entryway'}]
+
+kitchen = [roomdescriptions[4], 4, {'TREATS': 'treats', 'KNIFE': 'knife', 'AHEAD' : 'tikialtar' 'BACK' : 'office'}]
+
+tikialtar = [roomdescriptions[5], 0, {}]
+
+
 
 rooms = {'housekeeping' : 'outside',
          'outside' : 'entryway',
