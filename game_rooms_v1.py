@@ -21,6 +21,7 @@ items = {
 # 0 = roomdescription
 # 1 = roomchoicesint
 # 2 = roomchoicesdict
+# 3 = functions
 
 standardchoices = {'INV' : 'inventory', 'EXIT' : 'exit', 'QUIT' : 'quit'}
 
@@ -35,6 +36,8 @@ Your instructions are as follows:
 \tIf there are no choices, type 'yes' or 'no'.
 \tYou must remember that your choices do affect a real character
 \tand may result in their mortality.
+\t At any time, EXIT or QUIT will allow you to exit the game.
+\t At any time, INV will show you the inventory.
 
 Do you understand?
 """, 2, {'YES' : 'outside', 'NO' : 'housekeeping'}, None]
@@ -81,9 +84,9 @@ AHEAD, you see a large stone face, a Moai.
 tikialtar = ["""
 At its feet, you pet bunnies and drop off your goods as an offering to the great Nui!
 The face, Nui, tells you that the bunnies are named
-TIMMY, ALPHIE, and DOODLEBUG.
+TIMMY, ALFIE, and DOODLEBUG.
 ----------
-YAY! You collected stuff and pet the bunnies!""", 5, {'DOODLEBUG' : 'Doodle', 'TIMMY' : 'Timmy', 'ALPHIE' : 'Alfie', 'BACK' : 'kitchen', 'INV' : 'inventory'}, None]
+YAY! You collected stuff and pet the bunnies!""", 5, {'DOODLEBUG' : 'Doodle', 'TIMMY' : 'Timmy', 'ALFIE' : 'Alfie', 'BACK' : 'kitchen', 'INV' : 'inventory'}, None]
 
 roommap = {'housekeeping': housekeeping,
            'outside' : outside,
