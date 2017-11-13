@@ -11,7 +11,7 @@ config {
 'author_email' : 'camerynrhosyn@gmail.com',
 'version' : '1.0.2',
 'install_requires' : ['nose'],
-'packages' : ['NAME'],
+'packages' : ['DarkRabbitTikiGod'],
 'scripts' : [],
 'name' : 'darkrabbittikigod'
 }
