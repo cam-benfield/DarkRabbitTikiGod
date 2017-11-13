@@ -2,8 +2,6 @@ import game_data_v1
 
 error = ['''
 Your answer was invalid.
-Currently, you must restart the game,
-we will be adding a restart feature soon.
 ''', """Thank you for playing""", """You've reached the end of the game."""
 ]
 
@@ -12,7 +10,7 @@ items = {
     'staff' : ["""A staff sits beside the altar,calling your name. \nYou pick it up and are immediately reminded of an old man \nyou once called a bad name because of his cane. \nYou feel regret, as  you should."""] ,
     'small commander' : ["""You find a small figurine of a war leader, \na commander, if you will.\nHe is clothed in a loin cloth and is carrying\na smaller version of a staff, his fist held high.\nYou put him in your pocket, never to be seen again.\nHis people miss him. They're lost without him.\nYou should feel bad."""],
     'glowing cube' : ["""The glowing cube calls to you in a strange languag\nthat sounds like a series of numbers\nYou cannot understand the cube\nbut it seems like it's from the future\nYou steal it because what else are you going to do with it?""" ],
-    'drum' : []"""You found a drum. Just a drum.\nYou hit the top of it and it makes noise.\nWoo.\nYou might start a dance party, or a hippie convention.\nWho knows?"""],
+    'drum' : ["""You found a drum. Just a drum.\nYou hit the top of it and it makes noise.\nWoo.\nYou might start a dance party, or a hippie convention.\nWho knows?"""],
     'knife' : ["""You find a small knife on the counter of the kitchen.\nIt appears to have been used to cut up vegetables,\nbut could be used in a very small knife fight,\nor for cutting food.\nBetter be careful.\nDon't run with it."""],
     'treats' : ["""The cabinet contains treats,\nobviously meant for a small animal of some kind.\nBetter take some, never know what you'll need to bribe."""],
     'Timmy' : ["""Timmy has one flopped over ear\nHe also really likes treats\nBetter give him some treats."""],
@@ -23,6 +21,8 @@ items = {
 # 0 = roomdescription
 # 1 = roomchoicesint
 # 2 = roomchoicesdict
+
+standardchoices = {'INV' : 'inventory', 'EXIT' : 'exit', 'QUIT' : 'quit'}
 
 housekeeping = ["""
 Welcome to the Lair of the Dark Rabbit Tiki God.
@@ -37,7 +37,7 @@ Your instructions are as follows:
 \tand may result in their mortality.
 
 Do you understand?
-""", 1, {'YES' : 'outside', 'NO' : 'housekeeping'}]
+""", 2, {'YES' : 'outside', 'NO' : 'housekeeping'}, None]
 
 outside = ["""
 You awaken in a clearing.
@@ -46,7 +46,7 @@ You come upon a grey wooden door
 with a tiki carved in the front of it.
 A small POND is to your right.
 Do you OPEN the door or go BACK?
-""", 4, {'POND' : 'frog', 'OPEN' : 'entryway', 'BACK' : 'housekeeping', 'AHEAD' : 'entryway' }]
+""", 5, {'POND' : 'frog', 'OPEN' : 'entryway', 'BACK' : 'housekeeping', 'AHEAD' : 'entryway' , 'INV' : 'inventory', 'EXIT' : 'exit', 'QUIT' : 'quit'}, None]
 
 entryway = ["""
 You enter a dark room with an ARCH to your right.
@@ -58,7 +58,7 @@ To your left, there is a TABLE surrounded by shelves
 upon shelves of small armies, intended to bring success in war.
 Just AHEAD, you see a hallway that leads into darkness.
 Where would you like to go?
-""", 5, { 'ARCH': 'office', 'ALTAR' : 'staff', 'TABLE' : 'small commander', 'AHEAD': 'kitchen', 'BACK' : 'outside'}]
+""", 6, { 'ARCH': 'office', 'ALTAR' : 'staff', 'TABLE' : 'small commander', 'AHEAD': 'kitchen', 'BACK' : 'outside', 'INV' : 'inventory', 'EXIT' : 'exit', 'QUIT' : 'quit'}, None]
 
 office = ["""
 The whirring that was heard upon entering gets louder.
@@ -68,7 +68,7 @@ in a circle on the floor.
 You inspect the room and find nothing else of consequence.
 Ahead, you see a hallway that seems to lead to another room.
 Do you go FORWARD or BACK?
-""", 4, {'BOX' : 'glowing cube', 'DRUM' : 'drum', 'FORWARD' : 'kitchen', 'BACK' : 'entryway'}]
+""", 5, {'BOX' : 'glowing cube', 'DRUM' : 'drum', 'FORWARD' : 'kitchen', 'BACK' : 'entryway', 'INV' : 'inventory', 'EXIT' : 'exit', 'QUIT' : 'quit'}, None]
 
 kitchen = ["""
 You enter a room that seems to be used as a kitchen of sorts.
@@ -76,14 +76,14 @@ There are meats, vegetables, and an abundance of drinks and desserts.
 The CABINETS are locked, but you easily find the key.
 A small paring KNIFE sits on the countertop.
 AHEAD, you see a large stone face, a Moai.
-""", 4, {'CABINETS': 'treats', 'KNIFE': 'knife', 'AHEAD' : 'tikialtar', 'BACK' : 'office'}]
+""", 5, {'CABINETS': 'treats', 'KNIFE': 'knife', 'AHEAD' : 'tikialtar', 'BACK' : 'office', 'INV' : 'inventory', 'EXIT' : 'exit', 'QUIT' : 'quit'}, None]
 
-tikialtar = """
+tikialtar = ["""
 At its feet, you pet bunnies and drop off your goods as an offering to the great Nui!
 The face, Nui, tells you that the bunnies are named
 TIMMY, ALPHIE, and DOODLEBUG.
 ----------
-YAY! You collected stuff and freed the bunnies!""", 0, {'DOODLEBUG' : 'Doodle', 'TIMMY' : 'Timmy', 'ALPHIE' : 'Alfie', 'BACK' : 'kitchen'}]
+YAY! You collected stuff and pet the bunnies!""", 5, {'DOODLEBUG' : 'Doodle', 'TIMMY' : 'Timmy', 'ALPHIE' : 'Alfie', 'BACK' : 'kitchen', 'INV' : 'inventory'}, None]
 
 roommap = {'housekeeping': housekeeping,
            'outside' : outside,

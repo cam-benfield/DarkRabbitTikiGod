@@ -1,6 +1,44 @@
 import game_rooms_v1
 
-class Room(object):
+class Character(object):
+
+    def character_name(self):
+        print "What is your name, young traveler?"
+        charactername = raw_input('>> ')
+        self.characterinfo['name'] = charactername
+        print "Thanks for playing %s" % self.characterinfo['name']
+
+    def inventory_check(self, itemcheck): # UNUSED - future dev needed
+        if itemcheck in self.inventory:
+            return True
+            print "You have %s in your inventory." % itemcheck
+        else:
+            return False
+            print "You do not have the needed item in your inventory."
+            self.inventory_print()
+
+    def inventory_add(self, itemcheck):
+        if itemcheck in self.inventory:
+            print "You already have this item."
+        else:
+            self.inventory.append(itemcheck)
+            print "-" * 20
+            itemdata = game_rooms_v1.items[itemcheck]
+            print itemdata[0]
+            self.inventory.sort()
+            print "You have added %s to your inventory." % itemcheck
+            self.inventory_print()
+
+    def inventory_print(self):
+        print "You now have the following in your inventory:"
+        for item in self.inventory:
+            print item
+
+    def game_pause(self):
+        print "Press ENTER to continue the game."
+        raw_input('ENTER')
+
+class Room(Character):
 
     def __init__(self, room):
         current_room = room
@@ -23,6 +61,10 @@ class Room(object):
         numofchoices = current_room_data[1]
         if numofchoices > 0:
             choiceoptions = current_room_data[2]
+            for key, value in game_rooms_v1.standardchoices.items():
+                choiceoptions[key] = value
+
+            print choiceoptions
 
             choice = raw_input('>>').upper()
 
@@ -34,46 +76,19 @@ class Room(object):
             elif nextstep in game_rooms_v1.items:
                 self.inventory_add(nextstep)
                 self.print_room_text(current_room_data)
+            elif 'inventory' in nextstep:
+                self.inventory_print()
+                self.game_pause()
+                self.print_room_text(current_room_data)
+            elif 'exit' in nextstep:
+                exit(1)
             elif nextstep:
                 self.next_room_check(nextstep)
         else:
-            print error[1]
+            print game_rooms_v1.error[1]
 
     def next_room_check(self,nextroom):
         self.current_room_check(nextroom)
 
-    def character_name(self):
-        print "What is your name, young traveler?"
-        charactername = raw_input('>> ')
-        self.characterinfo['name'] = charactername
-        print "Thanks for playing %s" % self.characterinfo['name']
-
-    def inventory_check(self, itemcheck):
-        if itemcheck in self.inventory:
-            return True
-            print "You have %s in your inventory." % itemcheck
-        else:
-            return False
-            print "You do not have the needed item in your inventory."
-            self.inventory_print()
-
-    def inventory_add(self, itemcheck):
-        if itemcheck in self.inventory:
-            print "You already have this item."
-        else:
-            self.inventory.append(itemcheck)
-            print "-" * 20
-            itemdata = game_rooms_v1.items[itemcheck]
-            print itemdata[0]
-            self.inventory.sort()
-            print "You have added %s to your inventory." % itemcheck
-            self.inventory_print()
-
-    def inventory_print(self):
-        print "You now have the following in your inventory."
-        for item in self.inventory:
-            print item
-
 def start_game():
-    print "game is starting"
     room = Room('housekeeping')
