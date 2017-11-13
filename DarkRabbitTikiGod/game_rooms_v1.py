@@ -1,5 +1,3 @@
-import game_data_v1
-
 error = ['''
 Your answer was invalid.
 ''', """Thank you for playing""", """You've reached the end of the game."""

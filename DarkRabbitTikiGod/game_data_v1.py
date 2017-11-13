@@ -1,4 +1,4 @@
-import game_rooms_v1
+from DarkRabbitTikiGod import game_rooms_v1
 
 class Character(object):
 
@@ -63,8 +63,6 @@ class Room(Character):
             choiceoptions = current_room_data[2]
             for key, value in list(game_rooms_v1.standardchoices.items()):
                 choiceoptions[key] = value
-
-            print(choiceoptions)
 
             choice = input('>>').upper()
 
